@@ -1,18 +1,7 @@
 import { MusicContext } from '@/context/MusicContex';
 import { useContext } from 'react';
 
-type MusicPlayerHookReturnType = {
-    togglePlay: () => void;
-    playTrack: (index: number) => void;
-    currentTrackIndex: number;
-    currentTrackName: string | false;
-    trackList: { name: string; file: string }[];
-    isPlaying: boolean;
-    playPreviousTrack: () => void;
-    playNextTrack: () => void;
-};
-
-export const useMusicPlayer = (): MusicPlayerHookReturnType => {
+export const useMusicPlayer = () => {
     const contextValue = useContext(MusicContext);
 
     if (!contextValue) {
