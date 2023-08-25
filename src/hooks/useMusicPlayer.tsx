@@ -25,9 +25,9 @@ export const useMusicPlayer = () => {
         if (index === state.currentTrackIndex) {
             togglePlay();
         } else {
-            state.audioPlayer;
             state.audioPlayer = new Audio(state.tracks[index].file);
             state.audioPlayer.play();
+
             setState({
                 ...state,
                 currentTrackIndex: index,
@@ -38,17 +38,14 @@ export const useMusicPlayer = () => {
 
     const playPreviousTrack = () => {
         let newIndex = null;
-
         state.currentTrackIndex === 0
             ? (newIndex = state.tracks.length - 1)
             : (newIndex = state.currentTrackIndex - 1);
-
         playTrack(newIndex);
     };
 
     const playNextTrack = () => {
         let newIndex = null;
-
         state.currentTrackIndex === state.tracks.length - 1
             ? (newIndex = 0)
             : (newIndex = state.currentTrackIndex + 1);

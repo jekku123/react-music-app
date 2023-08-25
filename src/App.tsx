@@ -14,14 +14,6 @@ const initState = {
             name: 'Track 2',
             file: '',
         },
-        {
-            name: 'Track 3',
-            file: '',
-        },
-        {
-            name: 'Track 4',
-            file: '',
-        },
     ],
     currentTrackIndex: 0,
     isPlaying: false,

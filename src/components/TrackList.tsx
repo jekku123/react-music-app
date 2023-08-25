@@ -6,17 +6,20 @@ const TrackList = () => {
     const music = useMusicPlayer();
 
     return (
-        <div>
+        <div className='flex gap-10 p-10'>
             {music.trackList.map((track, i) => (
                 <div key={`${track}_${i}`}>
-                    <button onClick={() => music.playTrack(i)}>
-                        {music.isPlaying && music.currentTrackIndex === i ? (
-                            <FontAwesomeIcon icon={faPause} />
-                        ) : (
-                            <FontAwesomeIcon icon={faPlay} />
-                        )}
-                    </button>
-                    <div>Track Playing: {track.name}</div>
+                    <h2>Song: {track.name}</h2>
+                    <div className='flex justify-center'>
+                        <button onClick={() => music.playTrack(i)}>
+                            {music.isPlaying &&
+                            music.currentTrackIndex === i ? (
+                                <FontAwesomeIcon icon={faPause} />
+                            ) : (
+                                <FontAwesomeIcon icon={faPlay} />
+                            )}
+                        </button>
+                    </div>
                 </div>
             ))}
         </div>
