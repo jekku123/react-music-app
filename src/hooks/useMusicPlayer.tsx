@@ -20,6 +20,7 @@ export const useMusicPlayer = (): MusicPlayerHookReturnType => {
             'useMusicPlayer must be used within a MusicContextProvider'
         );
     }
+
     const [state, setState] = contextValue;
 
     const togglePlay = () => {
@@ -48,6 +49,7 @@ export const useMusicPlayer = (): MusicPlayerHookReturnType => {
 
     const playPreviousTrack = () => {
         let newIndex = null;
+
         state.currentTrackIndex === 0
             ? (newIndex = state.tracks.length - 1)
             : (newIndex = state.currentTrackIndex - 1);
@@ -57,6 +59,7 @@ export const useMusicPlayer = (): MusicPlayerHookReturnType => {
 
     const playNextTrack = () => {
         let newIndex = null;
+
         state.currentTrackIndex === state.tracks.length - 1
             ? (newIndex = 0)
             : (newIndex = state.currentTrackIndex + 1);
