@@ -1,5 +1,4 @@
-import { MusicContext, MusicContextType } from '@/context/MusicContex';
-
+import { MusicContext } from '@/context/MusicContex';
 import { useContext } from 'react';
 
 type MusicPlayerHookReturnType = {
@@ -14,7 +13,7 @@ type MusicPlayerHookReturnType = {
 };
 
 export const useMusicPlayer = (): MusicPlayerHookReturnType => {
-    const contextValue = useContext<MusicContextType | undefined>(MusicContext);
+    const contextValue = useContext(MusicContext);
 
     if (!contextValue) {
         throw new Error(

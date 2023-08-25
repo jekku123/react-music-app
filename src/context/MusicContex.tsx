@@ -12,6 +12,4 @@ export type MusicContextType = [
     setState: Dispatch<SetStateAction<IMusicContext>>
 ];
 
-export const MusicContext = createContext<MusicContextType | undefined>(
-    undefined
-);
+export const MusicContext = createContext<MusicContextType | null>(null);
