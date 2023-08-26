@@ -1,8 +1,7 @@
-import { MusicContext } from '@/context/MusicContex';
-import { useContext } from 'react';
+import { useMusicContext } from '@/context/MusicContex';
 
 export const useMusicPlayer = () => {
-    const contextValue = useContext(MusicContext);
+    const contextValue = useMusicContext();
 
     if (!contextValue) {
         throw new Error(
@@ -11,22 +10,24 @@ export const useMusicPlayer = () => {
     }
 
     const [state, setState] = contextValue;
+    const { isPlaying, currentTrackIndex, tracks } = state;
+    let { audioPlayer } = state;
 
     const togglePlay = () => {
-        if (state.isPlaying) {
+        if (isPlaying) {
             setState({ ...state, isPlaying: false });
         } else {
             setState({ ...state, isPlaying: true });
-            state.audioPlayer.play();
+            audioPlayer.play();
         }
     };
 
     const playTrack = (index: number) => {
-        if (index === state.currentTrackIndex) {
+        if (index === currentTrackIndex) {
             togglePlay();
         } else {
-            state.audioPlayer = new Audio(state.tracks[index].file);
-            state.audioPlayer.play();
+            audioPlayer = new Audio(tracks[index].file);
+            audioPlayer.play();
 
             setState({
                 ...state,
@@ -40,8 +41,8 @@ export const useMusicPlayer = () => {
         let newIndex = null;
 
         state.currentTrackIndex === 0
-            ? (newIndex = state.tracks.length - 1)
-            : (newIndex = state.currentTrackIndex - 1);
+            ? (newIndex = tracks.length - 1)
+            : (newIndex = currentTrackIndex - 1);
 
         playTrack(newIndex);
     };
@@ -49,9 +50,9 @@ export const useMusicPlayer = () => {
     const playNextTrack = () => {
         let newIndex = null;
 
-        state.currentTrackIndex === state.tracks.length - 1
+        state.currentTrackIndex === tracks.length - 1
             ? (newIndex = 0)
-            : (newIndex = state.currentTrackIndex + 1);
+            : (newIndex = currentTrackIndex + 1);
 
         playTrack(newIndex);
     };
@@ -59,12 +60,11 @@ export const useMusicPlayer = () => {
     return {
         togglePlay,
         playTrack,
-        currentTrackIndex: state.currentTrackIndex,
+        currentTrackIndex: currentTrackIndex,
         currentTrackName:
-            state.currentTrackIndex !== null &&
-            state.tracks[state.currentTrackIndex].name,
-        trackList: state.tracks,
-        isPlaying: state.isPlaying,
+            currentTrackIndex !== null && tracks[currentTrackIndex].name,
+        trackList: tracks,
+        isPlaying: isPlaying,
         playPreviousTrack,
         playNextTrack,
     };

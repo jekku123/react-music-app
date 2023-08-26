@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, createContext } from 'react';
+import { Dispatch, SetStateAction, createContext, useContext } from 'react';
 
 export interface IMusicContext {
     audioPlayer: HTMLAudioElement;
@@ -13,3 +13,7 @@ export type MusicContextType = [
 ];
 
 export const MusicContext = createContext<MusicContextType | null>(null);
+
+export const useMusicContext = () => {
+    return useContext(MusicContext);
+};
