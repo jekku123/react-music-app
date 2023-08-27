@@ -29,7 +29,6 @@ const App = () => {
                 <h2 className='scroll-m-20 border-b mb-6 pb-1 text-4xl font-semibold'>
                     Music Player <FontAwesomeIcon icon={faMusic} />
                 </h2>
-
                 <TrackList />
                 <PlayerControls />
             </div>
