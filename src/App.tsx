@@ -1,6 +1,7 @@
+import { faMusic } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
-import TrackList from './components/TrackList';
-import { PlayerControls } from './components/PlayerControls';
+import { PlayerControls, TrackList } from './components';
 import { MusicContext, MusicContextType } from './context/MusicContex';
 
 const initState = {
@@ -25,6 +26,10 @@ const App = () => {
     return (
         <MusicContext.Provider value={[state, setState]}>
             <div className='flex flex-col justify-center items-center h-screen'>
+                <h2 className='scroll-m-20 border-b mb-6 pb-1 text-4xl font-semibold'>
+                    Music Player <FontAwesomeIcon icon={faMusic} />
+                </h2>
+
                 <TrackList />
                 <PlayerControls />
             </div>
